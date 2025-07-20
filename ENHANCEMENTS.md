@@ -1,5 +1,11 @@
 # Enhancements implemented on the original kit
 
+### After apply:
+
+`bash
+sudo systemctl status nginx
+`
+
 ## Security Headers Configuration for Nginx
 
 **File edited:**
