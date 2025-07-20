@@ -58,3 +58,19 @@ Purpose: Disables browser access to geolocation, mic, and camera unless explicit
 These changes were applied inside the `http {}` block for global effectiveness across all hosted sites.
 
 
+## 2. File: `global/gzip.conf`
+
+**Path:** `wordpress-nginx-kit/global/gzip.conf`
+
+- ✅ Removed outdated or duplicate settings:
+  - `gzip_comp_level`
+  - `gzip_buffers`
+  - simplified `gzip_types` line
+  - associated inline comments
+
+- ✅ Added updated settings with fresh comments:
+  - `gzip_comp_level 6;` — balanced for performance and CPU usage
+  - `gzip_buffers 16 8k;` — defines buffer size for compressed data
+  - `gzip_types ...;` — consolidated list of common MIME types for compression
+
+This ensures consistent and optimized gzip compression with no redundant declarations.
