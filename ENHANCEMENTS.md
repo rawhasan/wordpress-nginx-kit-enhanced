@@ -25,7 +25,7 @@ These headers improve browser security and help mitigate attacks like XSS, data 
 
 ### 1. Content-Security-Policy (CSP)
 
-`add_header Content-Security-Policy "default-src 'self'; script-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://cdnjs.cloudflare.com https://nijhoom.b-cdn.net; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com https://nijhoom.b-cdn.net; font-src 'self' https://fonts.gstatic.com https://nijhoom.b-cdn.net; img-src 'self' data: https://www.google-analytics.com https://nijhoom.b-cdn.net; connect-src 'self' https://www.google-analytics.com https://nijhoom.com https://nijhoom.b-cdn.net; frame-ancestors 'self'; form-action 'self';" always;`
+`add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://cdnjs.cloudflare.com https://nijhoom.b-cdn.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://nijhoom.b-cdn.net; font-src 'self' https://fonts.gstatic.com https://nijhoom.b-cdn.net; img-src 'self' data: https://nijhoom.b-cdn.net https://www.google-analytics.com; connect-src 'self' https://nijhoom.com https://nijhoom.b-cdn.net https://www.google-analytics.com; frame-ancestors 'self'; form-action 'self';" always;`
 
 Purpose: Prevents loading of external/untrusted scripts, styles, fonts, and connections unless explicitly allowed.
 
