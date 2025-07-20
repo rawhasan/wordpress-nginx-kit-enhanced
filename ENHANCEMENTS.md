@@ -48,7 +48,7 @@ Purpose: Disables browser access to geolocation, mic, and camera unless explicit
 
 
 
-## 🛠️ File: `nginx.conf`
+## 1. File: `nginx.conf`
 
 **Path:** `wordpress-nginx-kit/nginx.conf`
 
@@ -56,4 +56,14 @@ Purpose: Disables browser access to geolocation, mic, and camera unless explicit
   Enhances security by hiding the Nginx version number in HTTP response headers.
 
 These changes were applied inside the `http {}` block for global effectiveness across all hosted sites.
+
+## 2. File: `global/fastcgi-params.conf`
+
+**Path:** `wordpress-nginx-kit/global/fastcgi-params.conf`
+
+- ✅ Verified and ensured `SCRIPT_FILENAME` is correctly set to `$document_root/$fastcgi_script_name`.
+- ✅ Added `HTTPS $https if_not_empty;` to inform PHP of secure requests.
+
+These ensure PHP receives correct request context and file execution paths.
+
 
