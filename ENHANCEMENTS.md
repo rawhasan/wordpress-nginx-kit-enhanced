@@ -52,9 +52,6 @@ Purpose: Disables browser access to geolocation, mic, and camera unless explicit
 
 **Path:** `wordpress-nginx-kit/nginx.conf`
 
-- **Added `keepalive_timeout 65;`**  
-  Improves performance by keeping connections open for reuse, reducing latency and server load.
-
 - **Added `server_tokens off;`**  
   Enhances security by hiding the Nginx version number in HTTP response headers.
 
