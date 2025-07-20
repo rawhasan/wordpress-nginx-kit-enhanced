@@ -52,7 +52,8 @@ add_header Permissions-Policy "geolocation=(), microphone=(), camera=()" always;
 
 Purpose: Disables browser access to geolocation, mic, and camera unless explicitly allowed.
 
----
+```
+```
 
 
 
@@ -67,7 +68,8 @@ Purpose: Disables browser access to geolocation, mic, and camera unless explicit
 
 These changes were applied inside the `http {}` block for global effectiveness across all hosted sites.
 
----
+```
+```
 
 
 
@@ -89,7 +91,12 @@ These changes were applied inside the `http {}` block for global effectiveness a
 
 This ensures consistent and optimized gzip compression with no redundant declarations.
 
----
+```
+```
+
+
+
+
 
 ## 4. File: `global/server/fastcgi-cache.conf`
 
@@ -104,8 +111,11 @@ fastcgi_cache_valid 200 301 302 1h;
 ```nginx
 add_header Fastcgi-Cache $upstream_cache_status;
 ```
+```
+```
 
----
+
+
 
 ## 5. File: `global/server/ssl.conf`
 
