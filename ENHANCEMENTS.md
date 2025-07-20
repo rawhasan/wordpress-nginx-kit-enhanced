@@ -23,10 +23,7 @@ sudo systemctl status nginx
 
 
 ```
-## 1. Security Headers Configuration for Nginx
-
-**File edited:**  
-`global/server/security.conf`
+## 1. File: `global/server/security.conf`
 
 These headers improve browser security and help mitigate attacks like XSS, data injection, and feature abuse.
 
