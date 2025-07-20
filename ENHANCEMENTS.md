@@ -12,6 +12,7 @@ sudo systemctl status nginx
 
 ### Scan sites after applying:
 - https://securityheaders.com/
+- https://developer.mozilla.org/en-US/observatory
 - https://www.ssllabs.com/
 
 ## 🛡️ Security Headers Configuration for Nginx
