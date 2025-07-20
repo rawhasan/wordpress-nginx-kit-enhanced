@@ -2,13 +2,13 @@
 
 ### After apply:
 
-`
+```
 sudo nginx -t 
 sudo systemctl reload nginx
-`
-`
+```
+```
 sudo systemctl status nginx
-`
+```
 
 ## Security Headers Configuration for Nginx
 
