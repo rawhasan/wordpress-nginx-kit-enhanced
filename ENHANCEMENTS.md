@@ -73,3 +73,21 @@ These changes were applied inside the `http {}` block for global effectiveness a
   - `gzip_buffers 16 8k;` — defines buffer size for compressed data
 
 This ensures consistent and optimized gzip compression with no redundant declarations.
+
+
+
+## ⚡️ 3. File: `global/server/fastcgi-cache.conf`
+
+- ✅ Defined caching validity duration for common responses:
+
+```nginx
+fastcgi_cache_valid 200 301 302 1h;
+```
+
+- ✅ Ensured cache debug header is added:
+
+```nginx
+add_header Fastcgi-Cache $upstream_cache_status;
+```
+
+
