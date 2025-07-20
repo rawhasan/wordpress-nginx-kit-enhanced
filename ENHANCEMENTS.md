@@ -10,7 +10,7 @@ sudo systemctl reload nginx
 sudo systemctl status nginx
 ```
 
-## Security Headers Configuration for Nginx
+## 🛡️ Security Headers Configuration for Nginx
 
 **File edited:**
 `global/server/security.conf`
