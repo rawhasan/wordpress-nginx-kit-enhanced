@@ -91,3 +91,31 @@ add_header Fastcgi-Cache $upstream_cache_status;
 ```
 
 
+### 4. ssl.conf
+
+- Replaced:
+  
+  ```nginx
+  add_header Strict-Transport-Security "max-age=31536000;";
+  ```
+
+  With:
+  
+  ```nginx
+  add_header Strict-Transport-Security "max-age=31536000; includeSubDomains;";
+  ```
+
+- Verified:
+  
+  ```nginx
+  ssl_dhparam /etc/nginx/dhparam;
+  ```
+  
+  File was generated using:
+  
+  ```bash
+  openssl dhparam -out /etc/nginx/dhparam 4096
+  ```
+
+
+
