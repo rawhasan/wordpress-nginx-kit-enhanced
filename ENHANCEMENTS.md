@@ -71,6 +71,5 @@ These changes were applied inside the `http {}` block for global effectiveness a
 - ✅ Added updated settings with fresh comments:
   - `gzip_comp_level 6;` — balanced for performance and CPU usage
   - `gzip_buffers 16 8k;` — defines buffer size for compressed data
-  - `gzip_types ...;` — consolidated list of common MIME types for compression
 
 This ensures consistent and optimized gzip compression with no redundant declarations.
