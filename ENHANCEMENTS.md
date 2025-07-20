@@ -25,9 +25,9 @@ sudo systemctl status nginx
 ```
 ## 1. File: `nginx.conf`
 
-**Path:** `wordpress-nginx-kit/nginx.conf`
+- **Added**
+```server_tokens off;```  
 
-- **Added `server_tokens off;`**  
   Enhances security by hiding the Nginx version number in HTTP response headers.
 
 These changes were applied inside the `http {}` block for global effectiveness across all hosted sites.
