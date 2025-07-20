@@ -40,7 +40,7 @@ These changes were applied inside the `http {}` block for global effectiveness a
 
 
 ```
-## 1. File: `global/server/security.conf`
+## 2. File: `global/server/security.conf`
 
 These headers improve browser security and help mitigate attacks like XSS, data injection, and feature abuse.
 
