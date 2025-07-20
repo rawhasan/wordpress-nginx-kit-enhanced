@@ -42,3 +42,21 @@ Purpose: Prevents leaking full URL referrer information to third-party domains.
 `add_header Permissions-Policy "geolocation=(), microphone=(), camera=()" always;`
 
 Purpose: Disables browser access to geolocation, mic, and camera unless explicitly allowed.
+
+
+
+
+
+
+## 🛠️ File: `nginx.conf`
+
+**Path:** `wordpress-nginx-kit/nginx.conf`
+
+- **Added `keepalive_timeout 65;`**  
+  Improves performance by keeping connections open for reuse, reducing latency and server load.
+
+- **Added `server_tokens off;`**  
+  Enhances security by hiding the Nginx version number in HTTP response headers.
+
+These changes were applied inside the `http {}` block for global effectiveness across all hosted sites.
+
