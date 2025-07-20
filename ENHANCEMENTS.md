@@ -23,10 +23,6 @@ sudo systemctl status nginx
 
 
 ```
-
-
-
-
 ## 1. Security Headers Configuration for Nginx
 
 **File edited:**  
@@ -59,12 +55,13 @@ add_header Permissions-Policy "geolocation=(), microphone=(), camera=()" always;
 Purpose: Disables browser access to geolocation, mic, and camera unless explicitly allowed.
 
 ```
+
+
+
+
+
+
 ```
-
-
-
-
-
 ## 2. File: `nginx.conf`
 
 **Path:** `wordpress-nginx-kit/nginx.conf`
@@ -75,12 +72,13 @@ Purpose: Disables browser access to geolocation, mic, and camera unless explicit
 These changes were applied inside the `http {}` block for global effectiveness across all hosted sites.
 
 ```
+
+
+
+
+
+
 ```
-
-
-
-
-
 ## 3. File: `global/gzip.conf`
 
 **Path:** `wordpress-nginx-kit/global/gzip.conf`
@@ -98,12 +96,13 @@ These changes were applied inside the `http {}` block for global effectiveness a
 This ensures consistent and optimized gzip compression with no redundant declarations.
 
 ```
+
+
+
+
+
+
 ```
-
-
-
-
-
 ## 4. File: `global/server/fastcgi-cache.conf`
 
 - ✅ Defined caching validity duration for common responses:
@@ -118,11 +117,13 @@ fastcgi_cache_valid 200 301 302 1h;
 add_header Fastcgi-Cache $upstream_cache_status;
 ```
 ```
+
+
+
+
+
+
 ```
-
-
-
-
 ## 5. File: `global/server/ssl.conf`
 
 - Replaced:
