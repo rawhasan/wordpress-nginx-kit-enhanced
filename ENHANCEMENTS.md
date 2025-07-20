@@ -2,7 +2,11 @@
 
 ### After apply:
 
-`bash
+`
+sudo nginx -t 
+sudo systemctl reload nginx
+`
+`
 sudo systemctl status nginx
 `
 
