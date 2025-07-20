@@ -23,6 +23,23 @@ sudo systemctl status nginx
 
 
 ```
+## 1. File: `nginx.conf`
+
+**Path:** `wordpress-nginx-kit/nginx.conf`
+
+- **Added `server_tokens off;`**  
+  Enhances security by hiding the Nginx version number in HTTP response headers.
+
+These changes were applied inside the `http {}` block for global effectiveness across all hosted sites.
+
+```
+
+
+
+
+
+
+```
 ## 1. File: `global/server/security.conf`
 
 These headers improve browser security and help mitigate attacks like XSS, data injection, and feature abuse.
@@ -50,23 +67,6 @@ add_header Permissions-Policy "geolocation=(), microphone=(), camera=()" always;
 ```
 
 Purpose: Disables browser access to geolocation, mic, and camera unless explicitly allowed.
-
-```
-
-
-
-
-
-
-```
-## 2. File: `nginx.conf`
-
-**Path:** `wordpress-nginx-kit/nginx.conf`
-
-- **Added `server_tokens off;`**  
-  Enhances security by hiding the Nginx version number in HTTP response headers.
-
-These changes were applied inside the `http {}` block for global effectiveness across all hosted sites.
 
 ```
 
