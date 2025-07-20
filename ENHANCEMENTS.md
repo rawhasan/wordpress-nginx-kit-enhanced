@@ -11,8 +11,8 @@ sudo systemctl status nginx
 ```
 
 ### Scan sites after applying:
-https://securityheaders.com/
-https://www.ssllabs.com/
+- https://securityheaders.com/
+- https://www.ssllabs.com/
 
 ## 🛡️ Security Headers Configuration for Nginx
 
