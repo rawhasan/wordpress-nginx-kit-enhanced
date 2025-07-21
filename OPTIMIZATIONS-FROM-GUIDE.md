@@ -39,7 +39,7 @@ For security reasons, you should uncomment the `server_tokens` directive and ens
 
 
 
-### Gzip Compression
+### Gzip Compression - Added on `global/gzip.conf`
 
 Uncomment the `gzip_proxied` directive and set it to `any`, which will ensure all proxied request responses are gzipped.
 
