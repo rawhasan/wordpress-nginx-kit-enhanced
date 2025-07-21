@@ -114,5 +114,5 @@ opcache.enable_file_override = 1
 
 ```
 ## Run WordPress as the Server User
-Steps details and script to change user and revert. | https://github.com/rawhasan/wordpress-lemp-server/tree/main/wordpress-user-change
+[Steps details and script to change user and revert.](https://github.com/rawhasan/wordpress-lemp-server/tree/main/wordpress-user-change)
 
