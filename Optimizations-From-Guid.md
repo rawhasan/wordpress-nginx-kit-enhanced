@@ -115,11 +115,15 @@ opcache.enable_file_override = 1
 ```
 ## Run WordPress as the Server User
 
+### Configure Nginx
+
 Open the Nginx configuration file: 
 
 ```sudo nano /etc/nginx/nginx.conf```
 
 Set the `user` to the username that you’re currently logged in with. This will make managing file permissions much easier in the future.
+
+### Configure Php
 
 Open the default pool configuration file:
 ```
@@ -136,9 +140,18 @@ listen.owner = YOUR-USERNAME
 listen.group = YOUR-USERNAME
 ```
 
-Before restarting PHP, check that the configuration file syntax is correct:
+### Test Nginx & Php
+
+```
+sudo nginx -t
+```
+
 ```
 sudo php-fpm8.3 -t
+```
+
+```
+sudo service nginx restart
 ```
 
 ```
