@@ -42,7 +42,7 @@ Uncomment the `gzip_comp_level` and set it to a value of `5` (ChatGPT Suggests `
 
 Uncomment the `gzip_types` directive, leaving the default values in place. This will ensure that JavaScript, CSS, and other file types are gzipped in addition to the HTML file type which is always compressed by the gzip module.
 
-***Restart Nginx***
+**Restart Nginx**
 ```
 sudo nginx -t
 sudo service nginx restart
