@@ -16,6 +16,8 @@ The `worker_processes` directive determines how many workers to spawn per server
 
 The `multi_accept` directive should be uncommented and set to `on`. This informs each `worker_process` to accept all new connections at a time, opposed to accepting one new connection at a time.
 
+
+
 ## Http Block
 
 In `http` block. The first directive to add is `keepalive_timeout`. The `keepalive_timeout` determines how many seconds a connection to the client should be kept open before it’s closed by Nginx. This directive should be lowered, as you don’t want idle connections sitting there for up to 75 seconds if they can be utilized by new clients. I have set mine to `15`. You can add this directive just above the `sendfile on;` directive.
@@ -27,6 +29,8 @@ Underneath `server_tokens` add the following line to set the maximum upload size
 ```client_max_body_size 64m;```
 
 I chose a value of `64m` but you can increase it if you run into issues uploading large files.
+
+
 
 ## Gzip Compression
 
@@ -41,34 +45,6 @@ Uncomment the `gzip_types` directive, leaving the default values in place. This 
 sudo nginx -t
 sudo service nginx restart
 ```
-
-
-
-## Run WordPress as the Server User
-
-Open the Nginx configuration file: 
-
-```sudo nano /etc/nginx/nginx.conf```
-
-Set the `user` to the username that you’re currently logged in with. This will make managing file permissions much easier in the future.
-
-Open the default pool configuration file:
-```
-sudo nano /etc/php/8.3/fpm/pool.d/www.conf
-```
-
-Change the following lines, replacing `www-data` with your username:
-```
-user = YOUR-USERNAME
-group = YOUR-USERNAME
-```
-```
-listen.owner = YOUR-USERNAME
-listen.group = YOUR-USERNAME
-```
-
-
-
 
 ## WordPress maximum upload size
 You should adjust your `php.ini` file to increase the WordPress maximum upload size. Both this and the `client_max_body_size directive` within Nginx must be changed for the new maximum upload limit to take effect.
@@ -99,6 +75,31 @@ sudo nano /etc/php/8.3/fpm/php.ini
 Hit `CTRL + W` and type `file_override` to locate the line we need to update. Now uncomment it (remove the semicolon) and change the value from zero to one:
 ```
 opcache.enable_file_override = 1
+```
+
+
+
+## Run WordPress as the Server User
+
+Open the Nginx configuration file: 
+
+```sudo nano /etc/nginx/nginx.conf```
+
+Set the `user` to the username that you’re currently logged in with. This will make managing file permissions much easier in the future.
+
+Open the default pool configuration file:
+```
+sudo nano /etc/php/8.3/fpm/pool.d/www.conf
+```
+
+Change the following lines, replacing `www-data` with your username:
+```
+user = YOUR-USERNAME
+group = YOUR-USERNAME
+```
+```
+listen.owner = YOUR-USERNAME
+listen.group = YOUR-USERNAME
 ```
 
 Before restarting PHP, check that the configuration file syntax is correct:
