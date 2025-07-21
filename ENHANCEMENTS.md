@@ -23,24 +23,7 @@ sudo systemctl status nginx
 
 
 ```
-## 1. File: `nginx.conf`
-
-- **Added**
-```server_tokens off;```  
-
-  Enhances security by hiding the Nginx version number in HTTP response headers.
-
-These changes were applied inside the `http {}` block for global effectiveness across all hosted sites.
-
-```
-
-
-
-
-
-
-```
-## 2. File: `global/server/security.conf`
+## 1. File: `global/server/security.conf`
 
 These headers improve browser security and help mitigate attacks like XSS, data injection, and feature abuse.
 
@@ -76,7 +59,7 @@ Purpose: Disables browser access to geolocation, mic, and camera unless explicit
 
 
 ```
-## 3. File: `global/gzip.conf`
+## 2. File: `global/gzip.conf`
 
 **Path:** `wordpress-nginx-kit/global/gzip.conf`
 
@@ -100,7 +83,7 @@ This ensures consistent and optimized gzip compression with no redundant declara
 
 
 ```
-## 4. File: `global/server/fastcgi-cache.conf`
+## 3. File: `global/server/fastcgi-cache.conf`
 
 - ✅ Defined caching validity duration for common responses:
 
@@ -121,7 +104,7 @@ add_header Fastcgi-Cache $upstream_cache_status;
 
 
 ```
-## 5. File: `global/server/ssl.conf`
+## 4. File: `global/server/ssl.conf`
 
 - Replaced:
 
