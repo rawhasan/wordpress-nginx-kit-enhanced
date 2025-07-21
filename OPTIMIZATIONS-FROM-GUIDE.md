@@ -41,7 +41,7 @@ The `worker_processes` directive determines how many workers to spawn per server
 
 
 
-### Gzip Compression
+### Gzip Compression (Made additional improvements by ChatGPT)
 
 - Uncomment the `gzip_proxied` directive and set it to `any`, which will ensure all proxied request responses are gzipped. (✔️ Already available in `global/gzip.conf`)
 
