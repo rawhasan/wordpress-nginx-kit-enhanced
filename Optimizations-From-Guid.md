@@ -114,54 +114,5 @@ opcache.enable_file_override = 1
 
 ```
 ## Run WordPress as the Server User
+Steps details and script to change user and revert. | https://github.com/rawhasan/wordpress-lemp-server/tree/main/wordpress-user-change
 
-### Configure Nginx
-
-Open the Nginx configuration file: 
-
-```sudo nano /etc/nginx/nginx.conf```
-
-Set the `user` to the username that you’re currently logged in with. This will make managing file permissions much easier in the future.
-
-### Configure Php
-
-Open the default pool configuration file:
-```
-sudo nano /etc/php/8.3/fpm/pool.d/www.conf
-```
-
-Change the following lines, replacing `www-data` with your username:
-```
-user = YOUR-USERNAME
-group = YOUR-USERNAME
-```
-```
-listen.owner = YOUR-USERNAME
-listen.group = YOUR-USERNAME
-```
-
-### Test Nginx & Php
-
-```
-sudo nginx -t
-```
-
-```
-sudo php-fpm8.3 -t
-```
-
-```
-sudo service nginx restart
-```
-
-```
-sudo service php8.3-fpm restart
-```
-
-Now that Nginx and PHP have been installed, you can confirm that they are both running under the correct user by issuing the `htop` command:
-
-If you hit `SHIFT + M`, the output will be arranged by memory usage which should bring the `php-fpm` processes into view. If you scroll to the bottom, you’ll also find a couple of nginx processes.
-
-Both processes will have one instance running under the root user. This is the main process that spawns each worker. The remainder should be running under the username you specified.
-
-If not, go back and check the configuration, and ensure that you have restarted both the Nginx and PHP-FPM services.
