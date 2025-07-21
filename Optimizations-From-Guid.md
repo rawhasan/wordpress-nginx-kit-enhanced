@@ -1,5 +1,7 @@
 # Nginx Optimizations from the Guide
 
+## User & Worker Process
+
 Get the number of CPU cores your server has available:
 
 ```grep processor /proc/cpuinfo | wc -l```
@@ -20,6 +22,8 @@ The `worker_processes` directive determines how many workers to spawn per server
 
 The `multi_accept` directive should be uncommented and set to `on`. This informs each `worker_process` to accept all new connections at a time, opposed to accepting one new connection at a time.
 
+## Http Block
+
 In `http` block. The first directive to add is `keepalive_timeout`. The `keepalive_timeout` determines how many seconds a connection to the client should be kept open before it’s closed by Nginx. This directive should be lowered, as you don’t want idle connections sitting there for up to 75 seconds if they can be utilized by new clients. I have set mine to `15`. You can add this directive just above the `sendfile on;` directive.
 
 For security reasons, you should uncomment the `server_tokens` directive and ensure it is set to `off`. This will disable emitting the Nginx version number in error messages and response headers.
@@ -28,4 +32,13 @@ Underneath `server_tokens` add the following line to set the maximum upload size
 
 ```client_max_body_size 64m;```
 
+I chose a value of `64m` but you can increase it if you run into issues uploading large files.
+
+## Gzip Compression
+
+Uncomment the `gzip_proxied` directive and set it to `any`, which will ensure all proxied request responses are gzipped.
+
+Uncomment the `gzip_comp_level` and set it to a value of `5` (ChatGPT Suggests `6` as Standard). This controls the compression level of a response and can have a value in the range of 1 – 9. Be careful not to set this value too high, as it can have a negative impact on CPU usage.
+
+Uncomment the `gzip_types` directive, leaving the default values in place. This will ensure that JavaScript, CSS, and other file types are gzipped in addition to the HTML file type which is always compressed by the gzip module.
 
