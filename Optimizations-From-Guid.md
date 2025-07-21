@@ -50,11 +50,14 @@ Uncomment the `gzip_types` directive, leaving the default values in place. This 
 sudo nginx -t
 sudo service nginx restart
 ```
+```
 
 
 
 
 
+
+```
 ## WordPress maximum upload size
 
 You should adjust your `php.ini` file to increase the WordPress maximum upload size. Both this and the `client_max_body_size directive` within Nginx must be changed for the new maximum upload limit to take effect.
@@ -82,11 +85,14 @@ upload_max_filesize = 64M
 ```
 post_max_size = 64M
 ```
+```
 
 
 
 
 
+
+```
 ## OPcache
 Enable the OPcache file override setting. When this setting is enabled, OPcache will serve the cached version of PHP files without checking if the file has been modified on the file system, resulting in improved PHP performance.
 
@@ -99,11 +105,14 @@ Hit `CTRL + W` and type `file_override` to locate the line we need to update. No
 ```
 opcache.enable_file_override = 1
 ```
+```
 
 
 
 
 
+
+```
 ## Run WordPress as the Server User
 
 Open the Nginx configuration file: 
