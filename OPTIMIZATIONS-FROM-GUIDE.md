@@ -77,7 +77,7 @@ sudo nano /etc/nginx/nginx.conf
 
 Underneath `server_tokens` add the following line to set the maximum upload size you require in the WordPress Media Library:
 
-```client_max_body_size 64m;```
+```client_max_body_size 64m;``` (✔️ Already available in `global/limits.conf`)
 
 Open your php.ini file:
 ```
