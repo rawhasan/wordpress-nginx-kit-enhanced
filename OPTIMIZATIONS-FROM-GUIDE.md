@@ -79,12 +79,12 @@ Underneath `server_tokens` add the following line to set the maximum upload size
 
 ```client_max_body_size 64m;``` (✔️ Already available in `global/limits.conf`)
 
-**Open your php.ini file:** (🔲 Apply after installing PHP)
+**Open your php.ini file:** 
 ```
 sudo nano /etc/php/8.3/fpm/php.ini
 ```
 
-Change the following lines to match the value you assigned to the client_max_body_size directive when configuring Nginx:
+Change the following lines to match the value you assigned to the client_max_body_size directive when configuring Nginx: (🔲 Apply after installing PHP)
 ```
 upload_max_filesize = 64M
 ```
