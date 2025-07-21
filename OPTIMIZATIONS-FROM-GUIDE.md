@@ -41,13 +41,13 @@ The `worker_processes` directive determines how many workers to spawn per server
 
 
 
-### Gzip Compression - ✔️ Added on `global/gzip.conf`
+### Gzip Compression
 
-- Uncomment the `gzip_proxied` directive and set it to `any`, which will ensure all proxied request responses are gzipped.
+- Uncomment the `gzip_proxied` directive and set it to `any`, which will ensure all proxied request responses are gzipped. (✔️ Already available in `global/gzip.conf`)
 
-- Uncomment the `gzip_comp_level` and set it to a value of `5` (ChatGPT Suggests `6` as Standard). This controls the compression level of a response and can have a value in the range of 1 – 9. Be careful not to set this value too high, as it can have a negative impact on CPU usage.
+- Uncomment the `gzip_comp_level` and set it to a value of `5` (ChatGPT Suggests `6` as Standard). This controls the compression level of a response and can have a value in the range of 1 – 9. Be careful not to set this value too high, as it can have a negative impact on CPU usage. (✔️ Already available in `global/gzip.conf`. Value updated to `6`)
 
-- Uncomment the `gzip_types` directive, leaving the default values in place. This will ensure that JavaScript, CSS, and other file types are gzipped in addition to the HTML file type which is always compressed by the gzip module.
+- Uncomment the `gzip_types` directive, leaving the default values in place. This will ensure that JavaScript, CSS, and other file types are gzipped in addition to the HTML file type which is always compressed by the gzip module. (✔️ Already available in `global/gzip.conf`)
 
 
 
