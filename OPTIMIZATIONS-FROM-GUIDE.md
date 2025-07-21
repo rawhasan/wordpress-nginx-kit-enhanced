@@ -107,7 +107,7 @@ Open your php.ini file:
 sudo nano /etc/php/8.3/fpm/php.ini
 ```
 
-Hit `CTRL + W` and type `file_override` to locate the line we need to update. Now uncomment it (remove the semicolon) and change the value from zero to one:
+Hit `CTRL + W` and type `file_override` to locate the line we need to update. Now uncomment it (remove the semicolon) and change the value from zero to one: (🔲 Apply after installing PHP)
 ```
 opcache.enable_file_override = 1
 ```
