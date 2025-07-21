@@ -10,12 +10,6 @@ Get your server’s open file limit:
 
 ```ulimit -n```
 
-Open the Nginx configuration file: 
-
-```sudo nano /etc/nginx/nginx.conf```
-
-Set the `user` to the username that you’re currently logged in with. This will make managing file permissions much easier in the future.
-
 The `worker_processes` directive determines how many workers to spawn per server. The general rule of thumb is to set this to the number of CPU cores your server has available. In my case, this is `1`.
 
 `worker_connections` should be set to your server’s open file limit. This tells Nginx how many simultaneous connections can be opened by each worker_process. Therefore, if you have two CPU cores and an open file limit of 1024, your server can handle 2048 connections per second.
@@ -47,4 +41,87 @@ Uncomment the `gzip_types` directive, leaving the default values in place. This 
 sudo nginx -t
 sudo service nginx restart
 ```
+
+
+
+## Run WordPress as the Server User
+
+Open the Nginx configuration file: 
+
+```sudo nano /etc/nginx/nginx.conf```
+
+Set the `user` to the username that you’re currently logged in with. This will make managing file permissions much easier in the future.
+
+Open the default pool configuration file:
+```
+sudo nano /etc/php/8.3/fpm/pool.d/www.conf
+```
+
+Change the following lines, replacing `www-data` with your username:
+```
+user = YOUR-USERNAME
+group = YOUR-USERNAME
+```
+```
+listen.owner = YOUR-USERNAME
+listen.group = YOUR-USERNAME
+```
+
+
+
+
+## WordPress maximum upload size
+You should adjust your `php.ini` file to increase the WordPress maximum upload size. Both this and the `client_max_body_size directive` within Nginx must be changed for the new maximum upload limit to take effect.
+
+Open your php.ini file:
+```
+sudo nano /etc/php/8.3/fpm/php.ini
+```
+
+Change the following lines to match the value you assigned to the client_max_body_size directive when configuring Nginx:
+```
+upload_max_filesize = 64M
+```
+```
+post_max_size = 64M
+```
+
+
+
+## OPcache
+Enable the OPcache file override setting. When this setting is enabled, OPcache will serve the cached version of PHP files without checking if the file has been modified on the file system, resulting in improved PHP performance.
+
+Open your php.ini file:
+```
+sudo nano /etc/php/8.3/fpm/php.ini
+```
+
+Hit `CTRL + W` and type `file_override` to locate the line we need to update. Now uncomment it (remove the semicolon) and change the value from zero to one:
+```
+opcache.enable_file_override = 1
+```
+
+Before restarting PHP, check that the configuration file syntax is correct:
+```
+sudo php-fpm8.3 -t
+```
+
+```
+sudo service php8.3-fpm restart
+```
+
+Now that Nginx and PHP have been installed, you can confirm that they are both running under the correct user by issuing the `htop` command:
+
+If you hit `SHIFT + M`, the output will be arranged by memory usage which should bring the `php-fpm` processes into view. If you scroll to the bottom, you’ll also find a couple of nginx processes.
+
+Both processes will have one instance running under the root user. This is the main process that spawns each worker. The remainder should be running under the username you specified.
+
+If not, go back and check the configuration, and ensure that you have restarted both the Nginx and PHP-FPM services.
+
+
+
+
+
+
+
 
