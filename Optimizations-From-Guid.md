@@ -13,11 +13,15 @@ sudo nano /etc/nginx/nginx.conf
 
 Get the number of CPU cores your server has available:
 
-```grep processor /proc/cpuinfo | wc -l```
+```
+grep processor /proc/cpuinfo | wc -l
+```
 
 Get your server’s open file limit:
 
-```ulimit -n```
+```
+ulimit -n
+```
 
 The `worker_processes` directive determines how many workers to spawn per server. The general rule of thumb is to set this to the number of CPU cores your server has available. In my case, this is `1`.
 
