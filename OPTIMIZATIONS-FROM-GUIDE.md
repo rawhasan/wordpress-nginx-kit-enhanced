@@ -70,7 +70,7 @@ You should adjust your `php.ini` file to increase the WordPress maximum upload s
 
 I chose a value of `64m` but you can increase it if you run into issues uploading large files.
 
-open the Nginx configuration file:
+**open the Nginx configuration file:**
 ```
 sudo nano /etc/nginx/nginx.conf
 ```
@@ -79,7 +79,7 @@ Underneath `server_tokens` add the following line to set the maximum upload size
 
 ```client_max_body_size 64m;``` (✔️ Already available in `global/limits.conf`)
 
-Open your php.ini file:
+**Open your php.ini file:** (🔲 Apply after installing PHP)
 ```
 sudo nano /etc/php/8.3/fpm/php.ini
 ```
