@@ -120,5 +120,76 @@ opcache.enable_file_override = 1
 
 ```
 ## Run WordPress as the Server User
+Changing the user causes trouble. DO NOT CHANGE. Run WordPress as `www-data` and add server user to the group (See Below)
+
 [Steps details and script to change user and revert.](https://github.com/rawhasan/wordpress-lemp-server/tree/main/wordpress-user-change)
+```
+
+
+
+
+
+
+```
+## ✅ Add the Server User to the `www-data` Group
+
+This is the safest and most common way to give your server user (e.g., for SSH or deployments) access to the WordPress directory owned by `www-data`.
+
+### Steps:
+
+---
+
+### 1. Check the Ownership of the WordPress Directory
+
+```bash
+ls -ld /var/www/html
+```
+
+**Expected output:**
+
+```text
+drwxr-xr-x  7 www-data www-data 4096 Jul 21 12:34 /var/www/html
+```
+
+---
+
+### 2. Add Your User to the `www-data` Group
+
+Replace `youruser` with your actual username:
+
+```bash
+sudo usermod -aG www-data youruser
+```
+
+> ⚠️ **Note:** You must log out and log back in (or reboot) for the group change to take effect.
+
+---
+
+### 3. Set Proper Permissions (Optional but Recommended)
+
+Make directories and files group-writable:
+
+```bash
+sudo find /var/www/html -type d -exec chmod 775 {} \;
+sudo find /var/www/html -type f -exec chmod 664 {} \;
+```
+
+---
+
+### 4. Set the `setgid` Bit (So New Files Inherit the Group)
+
+```bash
+sudo chmod g+s /var/www/html
+```
+
+---
+
+### ✅ Summary
+
+- Your user will be able to read and write to the WordPress directory.
+- Keeps ownership with `www-data`, which is necessary for Nginx/Apache and WordPress.
+- Ideal for shared development or deployment environments.
+
+
+
 
