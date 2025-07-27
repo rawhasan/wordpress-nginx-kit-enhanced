@@ -216,7 +216,7 @@ Now let’s download that `dhparam` file that we referenced in the SSL configura
 Generate File: (ChatGPT)
 
 ```bash
-openssl dhparam -out /etc/nginx/dhparam 4096
+sudo openssl dhparam -out /etc/nginx/dhparam 4096
 ```
 
 Verify: (ChatGPT)
