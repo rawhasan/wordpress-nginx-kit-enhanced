@@ -274,6 +274,8 @@ The most effective way to deal with XSS is to ensure that you correctly validate
 
 Let’s assume an attacker has managed to embed a malicious JavaScript file into the source code of your site or web application, maybe through a comment form or something similar. By default, the web browser will unknowingly load this external file and allow its contents to execute. Enter the Content Security Policy header, which allows you to define a whitelist of sources that are approved to load assets (JS, CSS, etc.). If the script isn’t on the approved list, it doesn’t get loaded.
 
+
+
 #### Content Security Policy (CSP)
 Creating a Content Security Policy can require some trial and error, as you need to be careful not to block assets that should be loaded such as those provided by Google or other third party vendors. As such, we’ll define a fairly relaxed policy at the server level and override it on a per-site basis as needed.
 
@@ -299,9 +301,28 @@ You may have noticed that this only deals with external assets, but what about i
 - Completely disable inline scripts by removing `unsafe-inline` and `unsafe-eval` from the Content-Security-Policy. However, this approach can break some third party plugins or themes, so be careful.
 - Enable `X-Xss-Protection` which will instruct the browser to filter through user input and ensure suspicious code isn’t output directly to HTML. Although not bulletproof, it’s a relatively simple countermeasure to implement.
 
+
+
 #### X-Xss Protection
 To enable the `X-Xss-Protection` filter add the following directive below the `Content-Security-Policy` entry: (✔️ Already available in `global/server/security.conf`)
 
 ```
 add_header X-Xss-Protection "1; mode=block" always;
+```
+
+
+
+### Clickjacking
+Clickjacking is an attack which fools the user into performing an action which they did not intend to, and is commonly achieved through the use of iframes. An article by Troy Hunt has a thorough explanation of clickjacking attacks.
+
+The most effective way to combat this attack vector is to completely disable frame embedding from third party domains. To do this, add the following directive below the `X-Xss-Protection` header: (✔️ Already available in `global/server/security.conf`)
+
+```
+add_header X-Frame-Options "SAMEORIGIN" always;
+```
+
+This will prevent all external domains from embedding your site directly into their own through the use of the `iframe` tag:
+
+```
+<iframe src="http://mydomain.com"</iframe>
 ```
