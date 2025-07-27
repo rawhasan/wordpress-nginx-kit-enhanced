@@ -132,14 +132,14 @@ Add:
 ## ✅ Done!
 
 You now have OCSP stapling correctly configured using `acme.sh` and Nginx.
+````
 
 
 
 
 
 
-
-
+````
 # 🔁 Switching `acme.sh` Back to Let's Encrypt (with OCSP Stapling)
 
 If you're currently using ZeroSSL with `acme.sh` and want to switch to Let's Encrypt (e.g., to stay within an open-source CA or to align with OCSP support), follow this guide.
