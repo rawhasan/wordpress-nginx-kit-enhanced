@@ -267,3 +267,41 @@ ssl_trusted_certificate /etc/letsencrypt/live/EXAMPLE.COM/chain.pem;
 
 These directives enable OCSP stapling and ensure that the OCSP response of your site is verified against the chain of trust using the provided certificate chain file.
 
+
+
+### Cross-site Scripting (XSS)
+The most effective way to deal with XSS is to ensure that you correctly validate and sanitize all user input in your code, including that within the WordPress admin areas. But most input validation and sanitization is out of your control when you consider third-party themes and plugins. You can however reduce the risk of vulnerability to XSS attacks by configuring Nginx to provide a few additional response headers.
+
+Let’s assume an attacker has managed to embed a malicious JavaScript file into the source code of your site or web application, maybe through a comment form or something similar. By default, the web browser will unknowingly load this external file and allow its contents to execute. Enter the Content Security Policy header, which allows you to define a whitelist of sources that are approved to load assets (JS, CSS, etc.). If the script isn’t on the approved list, it doesn’t get loaded.
+
+#### Content Security Policy (CSP)
+Creating a Content Security Policy can require some trial and error, as you need to be careful not to block assets that should be loaded such as those provided by Google or other third party vendors. As such, we’ll define a fairly relaxed policy at the server level and override it on a per-site basis as needed.
+
+Add the following to the Security Headers section inside the http block:
+
+```
+add_header Content-Security-Policy "default-src 'self' https: data: 'unsafe-inline' 'unsafe-eval';" always;
+```
+
+This will block any non HTTPS assets from loading.
+
+As an example of an override, you could add the following to the `server` block in your site’s configuration file that will only allow the current domain and a few sources from Google and WordPress.org:
+
+```
+sudo nano /etc/nginx/sites-available/EXAMPLE.COM
+```
+```
+add_header Content-Security-Policy "default-src 'self' https://*.google-analytics.com https://*.googleapis.com https://*.gstatic.com https://*.gravatar.com https://*.w.org data: 'unsafe-inline' 'unsafe-eval';" always;
+```
+
+You may have noticed that this only deals with external assets, but what about inline scripts? There are two ways you can handle this:
+
+- Completely disable inline scripts by removing `unsafe-inline` and `unsafe-eval` from the Content-Security-Policy. However, this approach can break some third party plugins or themes, so be careful.
+- Enable `X-Xss-Protection` which will instruct the browser to filter through user input and ensure suspicious code isn’t output directly to HTML. Although not bulletproof, it’s a relatively simple countermeasure to implement.
+
+#### X-Xss Protection
+To enable the `X-Xss-Protection` filter add the following directive below the `Content-Security-Policy` entry:
+
+```
+add_header X-Xss-Protection "1; mode=block" always;
+```
