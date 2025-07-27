@@ -194,6 +194,7 @@ sudo chmod g+s /var/www/html
 Although your site is configured to only handle HTTPS traffic via your SSL certificate from Let’s Encrypt, it still allows the client to attempt further HTTP connections. Adding the `Strict-Transport-Security` header to the server response will ensure all future connections enforce HTTPS. (✔️ Uncommented the subdomain option in `global/server/ssl.conf`).
 
 Now let’s update our SSL configuration as per the recommendations of Mozilla’s SSL Configuration Generator on the “Intermediate” setting. Find the `ssl_protocols` directive and replace that line with the following three lines:
+
 ```
 ssl_protocols TLSv1.2 TLSv1.3;
 ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-CHACHA20-POLY1305;
@@ -203,6 +204,7 @@ ssl_dhparam /etc/nginx/dhparam;
 This ensures we aren’t allowing the use of old, insecure protocols and ciphers.
 
 Now find the `ssl_prefer_server_ciphers` directive and update it to `off`:
+
 ```
 ssl_prefer_server_ciphers off;
 ```
@@ -210,6 +212,7 @@ ssl_prefer_server_ciphers off;
 This allows the client to choose the most performant cipher suite for their hardware configuration from our list of supported ciphers above.
 
 Now let’s download that `dhparam` file that we referenced in the SSL configuration update above and save it to the server:
+
 ```
 sudo sh -c 'curl https://ssl-config.mozilla.org/ffdhe2048.txt > /etc/nginx/dhparam'
 ```
