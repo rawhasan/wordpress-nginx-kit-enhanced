@@ -259,7 +259,7 @@ Now we must enable OCSP stapling for our site. Open our site’s Nginx config fi
 sudo nano /etc/nginx/sites-available/EXAMPLE.COM
 ```
 
-Add the following directive under the SSL certificate directives:
+Add the following directive under the SSL certificate directives: (✔️ Added in `sites-available/single-site-with-caching.com`)
 
 ```
 ssl_trusted_certificate /etc/letsencrypt/live/EXAMPLE.COM/chain.pem;
