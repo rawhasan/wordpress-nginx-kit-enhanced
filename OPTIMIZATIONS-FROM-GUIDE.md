@@ -363,7 +363,14 @@ add_header Referrer-Policy "origin-when-cross-origin" always;
 
 
 
+### Permissions Policy
+The `Permissions-Policy` header allows a site to enable and disable certain browser features and APIs. This allows you to manage which features can be used on your own pages and anything that you embed.
 
+A Permissions Policy works by specifying a directive and an allowlist. The directive is the name of the feature you want to control and the allowlist is a list of origins that are allowed to use the specified feature. MDN has a full list of available directives and allowlist values. Each directive has its own default allowlist, which will be the default behavior if they are not explicitly listed in a policy.
 
+You can specify several features at the same time by using a comma-separated list of policies. In the following example, we allow geolocation across all contexts, we restrict the camera to the current page and the specified domain, and we block the microphone across all contexts: (✔️ Already available in `global/server/security.conf` - `"geolocation=(), microphone=(), camera=()" always;`)
 
+```
+add_header Permissions-Policy "geolocation=*, camera=(self 'https://example.com'), microphone=()";
+```
 
