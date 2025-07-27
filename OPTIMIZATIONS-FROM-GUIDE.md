@@ -184,7 +184,7 @@ sudo chmod g+s /var/www/html
 
 ---
 
-### ✅ Summary
+### Summary
 
 - Your user will be able to read and write to the WordPress directory.
 - Keeps ownership with `www-data`, which is necessary for Nginx/Apache and WordPress.
