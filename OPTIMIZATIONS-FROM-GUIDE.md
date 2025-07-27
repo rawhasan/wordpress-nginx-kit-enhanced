@@ -213,9 +213,28 @@ This allows the client to choose the most performant cipher suite for their hard
 
 Now let’s download that `dhparam` file that we referenced in the SSL configuration update above and save it to the server: (🔲 Apply after setting up Nginx Kit)
 
+Generate File: (ChatGPT)
+
+```bash
+openssl dhparam -out /etc/nginx/dhparam 4096
 ```
-sudo sh -c 'curl https://ssl-config.mozilla.org/ffdhe2048.txt > /etc/nginx/dhparam'
+
+Verify: (ChatGPT)
+
+```nginx
+ssl_dhparam /etc/nginx/dhparam;
 ```
+
+Generate File (Guide)
+
+```
+# sudo sh -c 'curl https://ssl-config.mozilla.org/ffdhe2048.txt > /etc/nginx/dhparam'
+```
+
+
+
+### SSL Performance
+HTTPS connections are a lot more resource hungry than regular HTTP connections. This is due to the additional handshake procedure required when establishing a connection. However, it’s possible to cache the SSL session parameters, which will avoid the SSL handshake altogether for subsequent connections. Just remember that security is the name of the game, so you want clients to re-authenticate often. A happy medium of 10 minutes is usually a good starting point.
 
 
 
