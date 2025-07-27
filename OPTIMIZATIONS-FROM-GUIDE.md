@@ -234,7 +234,10 @@ Generate File (Guide)
 
 
 ### SSL Performance
-HTTPS connections are a lot more resource hungry than regular HTTP connections. This is due to the additional handshake procedure required when establishing a connection. However, it’s possible to cache the SSL session parameters, which will avoid the SSL handshake altogether for subsequent connections. Just remember that security is the name of the game, so you want clients to re-authenticate often. A happy medium of 10 minutes is usually a good starting point.
+HTTPS connections are a lot more resource hungry than regular HTTP connections. This is due to the additional handshake procedure required when establishing a connection. However, it’s possible to cache the SSL session parameters, which will avoid the SSL handshake altogether for subsequent connections. Just remember that security is the name of the game, so you want clients to re-authenticate often. A happy medium of 10 minutes is usually a good starting point. (✔️ Already available in `global/server/ssl.conf`)
 
-
-
+```
+ssl_session_cache shared:SSL:10m;
+ssl_session_timeout 1d;
+ssl_session_tickets off;
+```
