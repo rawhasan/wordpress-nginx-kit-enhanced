@@ -60,11 +60,3 @@ fastcgi_cache_valid 200 301 302 1h;
 ```nginx
 add_header Fastcgi-Cache $upstream_cache_status;
 ```
-```
-
-
-
-
-
-
-
