@@ -277,7 +277,7 @@ Let’s assume an attacker has managed to embed a malicious JavaScript file into
 #### Content Security Policy (CSP)
 Creating a Content Security Policy can require some trial and error, as you need to be careful not to block assets that should be loaded such as those provided by Google or other third party vendors. As such, we’ll define a fairly relaxed policy at the server level and override it on a per-site basis as needed.
 
-Add the following to the Security Headers section inside the http block:
+Add the following to the Security Headers section inside the http block: (✔️ Available in `global/server/security.conf` as commented. 🔲 Uncomment and test if site breaks)
 
 ```
 add_header Content-Security-Policy "default-src 'self' https: data: 'unsafe-inline' 'unsafe-eval';" always;
@@ -285,7 +285,7 @@ add_header Content-Security-Policy "default-src 'self' https: data: 'unsafe-inli
 
 This will block any non HTTPS assets from loading.
 
-As an example of an override, you could add the following to the `server` block in your site’s configuration file that will only allow the current domain and a few sources from Google and WordPress.org:
+As an example of an override, you could add the following to the `server` block in your site’s configuration file that will only allow the current domain and a few sources from Google and WordPress.org: (🔲 Apply in per site basis - test throughly if site breaks)
 
 ```
 sudo nano /etc/nginx/sites-available/EXAMPLE.COM
@@ -300,7 +300,7 @@ You may have noticed that this only deals with external assets, but what about i
 - Enable `X-Xss-Protection` which will instruct the browser to filter through user input and ensure suspicious code isn’t output directly to HTML. Although not bulletproof, it’s a relatively simple countermeasure to implement.
 
 #### X-Xss Protection
-To enable the `X-Xss-Protection` filter add the following directive below the `Content-Security-Policy` entry:
+To enable the `X-Xss-Protection` filter add the following directive below the `Content-Security-Policy` entry: (✔️ Already available in `global/server/security.conf`)
 
 ```
 add_header X-Xss-Protection "1; mode=block" always;
