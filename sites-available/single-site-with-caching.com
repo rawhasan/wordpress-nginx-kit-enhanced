@@ -19,6 +19,9 @@ server {
 	ssl_certificate /etc/letsencrypt/live/single-site-with-caching.com/fullchain.pem;
 	ssl_certificate_key /etc/letsencrypt/live/single-site-with-caching.com/privkey.pem;
 
+	# Enable OCSP Stapling (Enhancement from the guide
+	ssl_trusted_certificate /etc/letsencrypt/live/single-site-with-caching.com/chain.pem;
+
 	# File to be used as index
 	index index.php;
 
