@@ -208,10 +208,11 @@ ssl_certificate     /etc/nginx/ssl/yourdomain.com/cert.pem;
 ssl_certificate_key /etc/nginx/ssl/yourdomain.com/privkey.pem;
 ssl_trusted_certificate /etc/nginx/ssl/yourdomain.com/chain.pem;
 
-ssl_stapling on;
-ssl_stapling_verify on;
-resolver 1.1.1.1 1.0.0.1 valid=300s;
-resolver_timeout 5s;
+# Added already
+# ssl_stapling on;
+# ssl_stapling_verify on;
+# resolver 1.1.1.1 1.0.0.1 valid=300s;
+# resolver_timeout 5s;
 ```
 
 ---
