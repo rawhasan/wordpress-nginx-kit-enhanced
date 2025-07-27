@@ -23,7 +23,7 @@ sudo systemctl status nginx
 
 
 ```
-## 1. File: `global/gzip.conf`
+## 1. File: `global/gzip.conf` (ChatGPT)
 
 **Path:** `wordpress-nginx-kit/global/gzip.conf`
 
@@ -47,7 +47,7 @@ This ensures consistent and optimized gzip compression with no redundant declara
 
 
 ```
-## 2. File: `global/server/fastcgi-cache.conf`
+## 2. File: `global/server/fastcgi-cache.conf` (ChatGPT)
 
 - ✅ Defined caching validity duration for common responses:
 
