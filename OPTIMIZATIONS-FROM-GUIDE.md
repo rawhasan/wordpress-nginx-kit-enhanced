@@ -337,3 +337,33 @@ To disable MIME sniffing add the following directive: (✔️ Already available 
 ```
 add_header X-Content-Type-Options "nosniff" always;
 ```
+
+
+
+### Referrer Policy
+The `Referrer-Policy` header allows you to control which information is included in the `Referrer` header when navigating from pages on your site. While referrer information can be useful, there are cases where you may not want the full URL passed to the destination server, for example, when navigating away from private content (think membership sites).
+
+In fact, since WordPress 4.9 any requests from the WordPress dashboard will automatically send a blank referrer header to any external destinations. Doing so makes it impossible to track these requests when navigating away from your site (from within the WordPress dashboard), which helps to prevent broadcasting the fact that your site is running on WordPress by not passing `/wp-admin` to external domains.
+
+We can take this a step further by restricting the referrer information for all pages on our site, not just the WordPress dashboard. A common approach is to pass only the domain to the destination server, so instead of:
+
+```
+https://myawesomesite.com/top-secret-url
+```
+
+```
+https://myawesomesite.com
+```
+
+You can achieve this using the following policy: (✔️ Already available in `global/server/security.conf` - `"strict-origin-when-cross-origin"`)
+
+```
+add_header Referrer-Policy "origin-when-cross-origin" always;
+```
+
+
+
+
+
+
+
