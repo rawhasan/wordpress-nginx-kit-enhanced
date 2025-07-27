@@ -326,3 +326,14 @@ This will prevent all external domains from embedding your site directly into th
 ```
 <iframe src="http://mydomain.com"</iframe>
 ```
+
+
+
+### MIME Sniffing
+MIME sniffing can expose your site to attacks such as “drive-by downloads.” The `X-Content-Type-Options` header counters this threat by ensuring only the MIME type provided by the server is honored. An article by Microsoft explains MIME sniffing in detail.
+
+To disable MIME sniffing add the following directive: (✔️ Already available in `global/server/security.conf`)
+
+```
+add_header X-Content-Type-Options "nosniff" always;
+```
