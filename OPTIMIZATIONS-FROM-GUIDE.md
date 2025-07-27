@@ -247,7 +247,7 @@ ssl_session_tickets off;
 ### OCSP Stapling
 OCSP (Online Certificate Status Protocol) stapling is a method used to check the revocation status of your SSL/TLS certificate, which improves both security and performance. By enabling OCSP stapling, your server can cache the OCSP response from the Certificate Authority (CA) and serve it to clients, reducing the need for clients to reach out to the CA directly.
 
-To enable OCSP stapling, add the following directives within the `http` block under the SSL Settings in the nginx.conf:
+To enable OCSP stapling, add the following directives within the `http` block under the SSL Settings in the nginx.conf: (✔️ Added in `global/server/ssl.conf`)
 
 ```
 ssl_stapling on;
