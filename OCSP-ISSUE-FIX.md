@@ -1,6 +1,9 @@
 # Enabling OCSP Stapling with Nginx and acme.sh
 
 Certbot was not providing a certificate with OCSP Support. So issued a certificate with `acme.sh` and took the steps to make the OCSP work.
+**Reason found:** Let’s Encrypt has officially disabled support for issuing certificates with the OCSP Must-Staple extension as of December 2024:
+
+🔗 https://letsencrypt.org/2024/12/05/ending-ocsp-must-staple.html
 
 This guide explains how to issue an SSL certificate that supports OCSP stapling using `acme.sh`, configure it in Nginx, and verify it works.
 
