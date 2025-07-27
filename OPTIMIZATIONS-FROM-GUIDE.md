@@ -219,7 +219,7 @@ Generate File: (ChatGPT)
 sudo openssl dhparam -out /etc/nginx/dhparam 4096
 ```
 
-Verify this directive is present in `global/server/ssl.conf`: (ChatGPT)
+Verify this directive is present: (ChatGPT) (✔️ Already available in `global/server/ssl.conf`)
 
 ```nginx
 ssl_dhparam /etc/nginx/dhparam;
